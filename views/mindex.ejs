@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-Type" content="text/html;charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="black" name="apple-mobile-web-app-status-bar-style">
+	<meta content="-1" http-equiv="Expires">
+	<meta content="telephone=no" name="format-detection">
+    <meta http-equiv="Content-Language" contect="zh-CN">
+    <meta name="keywords" content="微信">
+    <meta name="description" content="微信">
+    <meta http-equiv="pragma" content="no-cache" />
+    <meta http-equiv="Cache-Control" content="no-cache" />
+    <title>个人信息</title>
+    <link rel="stylesheet" type="text/css" href="common.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<section>
+	<div class="head-box">
+		<div class="head-img"><img src=<%= imgurl %>></div>
+
+		<div class="head-name"><%= name %></div>
+		<div class="head-gender"><%= gender %></div>
+		
+	</div>
+</section>
+<section>
+    <div class="nav-box">
+
+    	<div class="nav-info">
+    		<div class="nav-info0">
+    		    <p>
+    			  <span>出生日期：<%= birthday %></span>
+    			  <span>民族：<%= nation %></span>
+    			</p>
+    			<p>
+    			  <span>学号：<%= studentid %></span>
+    			  <span>专业：<%= major_name %></span>
+    			</p>
+    			<p>
+    			  <span>入学年份：<%= startyearmonth %></span>
+    			  <span>研究方向：<%= researcharea %></span>
+    			</p>
+    			<p>
+    			  <span>校区：<%= location %></span>
+    			  <span>电话：<%= telephone %></span>
+    			</p>
+    			<p>
+    			  <span>邮箱：<%= mail %></span>
+    			  <span>学苑：<%= birthday %></span>
+    			</p>
+    			<p>
+    			  <span>单双证：<%= type_name %></span>
+    			  <span>领域：<%= birthday %></span>
+    			</p>
+				<p>
+					<span>导师姓名：<%= teacher_id %></span>
+				</p>
+				<p>
+					<span>辅助导师姓名：<%= vice_teacher_id %></span>
+				</p>
+    		</div>
+    	</div>
+    </div>
+</section>
+<script src="jquery.min.js"></script>
+<script src="common.js"></script>
+</body>
+</html>

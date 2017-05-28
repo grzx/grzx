@@ -1,0 +1,91 @@
+.head-box{
+ width: 100%;
+ height: 4rem;
+ background-color: #00CACA;
+ text-align: center;
+}
+.head-img{
+	width: 100%;
+	text-align: center;
+	padding-top: 1rem;
+}
+.head-img img{
+	width: 1.2rem;
+	height: 1.2rem;
+	border-radius: 50%;
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	-ms-border-radius: 50%;
+}
+.head-name{
+	color: #fff;
+    font-size: 0.6rem;
+}
+.head-gender{
+	font-size: 0.4rem;
+	color: #eee;
+	margin-top: 0.1rem;
+}
+.nav-box-top{
+	width: 100%;
+	height: 1.2rem;
+	line-height: 1.2rem;
+	margin-top: 0.5rem;
+}
+.nav-box-top a{
+	display: inline-block;
+	height: 1rem;
+	width: 49%;
+	line-height: 1rem;
+	text-align: center;
+	box-sizing: border-box;
+	font-size: 0.8rem;
+}
+.nav-box-top a+a{
+	border-left: 1px solid #ddd;
+}
+.nav-box-top a.acitve{
+	color: #00CACA;
+}
+.nav-info1{display: none;font-size: 0.58rem;}
+.nav-info{
+	font-size: 0.58rem;
+	margin-top: 0.8rem;
+}
+.nav-info span{
+	display: inline-block;
+	width: 48%;
+	
+}
+.nav-info p{
+	width:100%;
+	line-height: 1rem;
+	padding: 0 0.4rem;
+	box-sizing: border-box;
+}
+.sh-statu{
+	text-align: right;
+	padding-right: 2rem;
+}
+.sh-statu img{
+	width: 4rem;
+	height: 4rem;
+}
+.all-status ul li{
+	border-bottom: 1px solid #dfdfdf;
+	height: 2.5rem;
+	line-height: 2.5rem;
+	padding-left: 0.5rem;
+	font-size: 0.6rem;
+}
+.all-status ul li .this-status img{
+	width: 60px;
+	height: auto;
+	vertical-align: middle;
+}
+.all-status ul li .this-statusno img{
+	width: 100px;
+	height: auto;
+	margin-left: -0.5rem;
+	vertical-align: middle;
+}

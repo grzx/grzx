@@ -108,9 +108,27 @@ function get_userInfo(res,userId,userInfoToken){
 //渲染学生信息页面
 function renderSdudent(res,titlep,userInfo){
 		console.log(userInfo);
-		res.render('studentInfo',{
-		title:titlep,
-		username:userInfo.name,
+		res.render('mindex',{
+			studentid: userInfo.studentid,
+            name: userInfo.name,
+            gender: userInfo.gender,
+            type_name: userInfo.type_name,
+            degree_type_name: userInfo.degree_type_name,
+            researcharea: userInfo.researcharea,
+            major_name: userInfo.major_name,
+            mail: userInfo.mail,
+            telephone: userInfo.telephone,
+            birthday: userInfo.birthday,
+            politicsstatus: userInfo.politicsstatus,
+            nation: userInfo.nation,
+            location: userInfo.location,
+            teacher_id: userInfo.teacher_id,
+            vice_teacher_id: userInfo.vice_teacher_id,
+            startyearmonth: userInfo.startyearmonth,
+            grade: userInfo.grade,
+            hktwmacn: userInfo.hktwmacn,
+            domain: userInfo.domain,
+            imgurl: userInfo.imgurl
 		});
 }
 
