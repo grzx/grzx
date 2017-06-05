@@ -14,48 +14,40 @@
     <meta http-equiv="pragma" content="no-cache" />
     <meta http-equiv="Cache-Control" content="no-cache" />
     <title>导师信息</title>
-    <link rel="stylesheet" type="text/css" href="css/common.css">
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" type="text/css" href="common.css">
+	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
 <section>
 	<div class="head-box">
-		<div class="head-img"><img src="images/favicon.jpg"></div>
+		<div class="head-img"><img src="favicon.jpg"></div>
 
-		<div class="head-name">蒋老师</div>
-		<div class="head-gender">男</div>
-		
 	</div>
 </section>
 <section>
     <div class="nav-box">
     	<div class="nav-box-top">
-    		<a href="javascript:void(0)" class="acitve">基本信息</a>
-            <a href="javascript:void(0)">详细介绍</a>
     	</div>
     	<div class="nav-info">
     		<div class="nav-info0">
+				<p>
+					<span>教师姓名：<%=name %></span>
+				</p>
+				<p>
+					<span>性别：<%=gender %></span>
+				</p>
     		    <p>
-    			  <span>教师id：001</span>
-    			  <span>民族：汉族</span>
+    			  <span>教师id：<%=teacher_id %></span>
     			</p>
     			<p>
-    			  <span>职务：老师</span>
-    			  <span>E-mail：sdfsfsf@163.com</span>
+    			  <span>E-mail：<%=mail %></span>
     			</p>
     			<p>
-    			  <span>职称：教授</span>
-    			  <span>是否兼职：否</span>
+    			  <span>职称：<%=title %></span>
     			</p>
-    			
-    		</div>
-    		<div class="nav-info1">
-    			<p>
-    			  博士，教授，博导，2000年获计算机工学博士学位，复旦大学计算机与工程博士，教授，博导，2000年获计算机工学博士学位，复旦大学计算机与工程博士，教授，博导，2000年获计算机工学博士学位，复旦大学计算机与工程
-    			</p>
-    			<p>
-    			  
-    			</p>
+				<p>
+					<span>电话：<%=telephone%></span>
+				</p>
     		</div>
     	</div>
     </div>
