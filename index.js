@@ -99,7 +99,7 @@ function get_userInfo(req,userId, userInfoToken,res) {
             responseText.push(data);
             var j = JSON.parse(data);
             console.log(j);
-            if(j.errcode==40001){
+            if(j.errcode==0){
                 userInfo=j.data;
             }
         });
@@ -190,17 +190,13 @@ function renderTeacher(res, titlep, userInfo) {
 app.get('/', function (req, res) {
 
     if (req.session.userInfo != null){
-        console.log("1");
         renderSdudent(res, "学生信息", req.session.userInfo);
         res.end;
     }else {
-        console.log("2");
         var arg = url.parse(req.url).query;
         var code = querystring.parse(arg).code;
         get_userId(code);
-        console.log("userId" + userId);
         if (userId != null) {
-            console.log("_+_+_+_+_+_+");
             get_userInfo(req, userId, userToken, res);
         }
     }
@@ -214,7 +210,6 @@ app.get("/teacherInfo", function (req, res) {
     }else{
         get_teacherInfo(res, teacher_id, userToken);
     }
-
 });
 
 app.listen(PORT);
