@@ -14,8 +14,8 @@
     <meta http-equiv="pragma" content="no-cache" />
     <meta http-equiv="Cache-Control" content="no-cache" />
     <title>就业信息</title>
-    <link rel="stylesheet" type="text/css" href="css/common.css">
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="common.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
 
@@ -24,12 +24,12 @@
     	
     	<div class="nav-info">
     		<div class="nav-info0" style="padding-left: 2rem;padding-top: 1rem;">
-    		    <p>就业状况：已经就业</p>
-    			<p>就业单位：心神科技有限公司</p>
-    			<p>岗位：java工程师</p>
-                <p>所属行业：互联网</p>
-                <p>就业地点：中关村</p>
-                <p>薪资水平：10000</p>
+    		    <p>就业状况：<%=jobInfo.type%> </p>
+    			<p>就业单位：<%=jobInfo.company%></p>
+    			<p>岗位：<%=jobInfo.position%></p>
+                <p>所属行业：<%=jobInfo.industry%></p>
+                <p>就业地点：<%=jobInfo.location%></p>
+                <p>薪资水平：<%=jobInfo.salary%></p>
     		</div>
     		
     	</div>

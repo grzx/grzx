@@ -61,7 +61,7 @@ function get_userId(code) {
         response.setEncoding('utf8');
         response.on('data', function (data) {
             //	console.log(data);
-            var j = JSON.parse(data)
+            var j = JSON.parse(data);
             responseText.push(data);
             if (j.UserId != null)
                 userId = j.UserId;
@@ -102,11 +102,13 @@ function get_userInfo(req,userId, userInfoToken,res) {
             if(j.errcode==0){
                 userInfo=j.data;
             }
+
         });
         response.on('end', function () {
             //console.log(responseText);
             req.session.userInfo = userInfo;
             req.session.teacher_id = userInfo.teacher_id;
+            req.session.studentid = userInfo.studentid;
             renderSdudent(res, "学生信息", userInfo);
         });
     });
@@ -139,6 +141,71 @@ function get_teacherInfo(res, teacherId, userInfoToken) {
         });
         response.on('end', function () {
             renderTeacher(res, "导师信息", teacherInfo);
+            //console.log(responseText);
+        });
+    });
+    //对于前面设置请求和json数据进行发送
+    //get_req.write(post_str);
+    get_req.end();
+}
+function get_jobInfo(res,studentid,userInfoToken) {
+    //https://api.mysspku.com/index.php/V2/StudentInfo/getDetail?stuid=STUID&token=TOKEN
+    //设置get请求参数
+    var get_options = {
+        host: 'api.mysspku.com',
+        path: '/index.php/V2/StudentInfo/getJobInfo?stuid=' + studentid + '&token=' + userInfoToken,
+        method: 'GET',
+        rejectUnauthorized: false
+    };
+    //	console.log("https://api.mysspku.com/index.php/V2/StudentInfo/getDetail?stuid="+userId+"&token="+userInfoToken);
+    var get_req = https.request(get_options, function (response) {
+        var responseText = [];
+        var size = 0;
+        var jobInfo;
+        response.setEncoding('utf8');
+        response.on('data', function (data) {
+            console.log(data);
+            responseText.push(data);
+            var j = JSON.parse(data);
+            if (j.errcode == 0) {
+                jobInfo = j.data;
+            }
+        });
+        response.on('end', function () {
+            renderJob(res, "就业信息", jobInfo);
+            //console.log(responseText);
+        });
+    });
+    //对于前面设置请求和json数据进行发送
+    //get_req.write(post_str);
+    get_req.end();
+}
+
+function get_paperProcess(res,studentid,userInfoToken) {
+    //https://api.mysspku.com/index.php/V2/StudentInfo/getDetail?stuid=STUID&token=TOKEN
+    //设置get请求参数
+    var get_options = {
+        host: 'api.mysspku.com',
+        path: '/index.php/V2/StudentInfo/getPaperProcess?stuid=' + studentid + '&token=' + userInfoToken,
+        method: 'GET',
+        rejectUnauthorized: false
+    };
+    //	console.log("https://api.mysspku.com/index.php/V2/StudentInfo/getDetail?stuid="+userId+"&token="+userInfoToken);
+    var get_req = https.request(get_options, function (response) {
+        var responseText = [];
+        var size = 0;
+        var paperProcess;
+        response.setEncoding('utf8');
+        response.on('data', function (data) {
+            console.log(data);
+            responseText.push(data);
+            var j = JSON.parse(data);
+            if (j.errcode == 0) {
+                paperProcess = j.data;
+            }
+        });
+        response.on('end', function () {
+            renderPaper(res, "就业信息", paperProcess);
             //console.log(responseText);
         });
     });
@@ -186,10 +253,20 @@ function renderTeacher(res, titlep, userInfo) {
         imgurl: userInfo.imgurl
     });
 }
+function renderJob(res, titlep, jobInfo) {
+    console.log(jobInfo);
+    res.render('jobInfo', {
+        jobInfo: jobInfo
+    });
+}
+function renderPaper(res, titlep, paperProcess) {
+    res.render('paperProcess', {
+        paperProcess: paperProcess
+    });
+}
 
-app.get('/', function (req, res) {
-
-    if (req.session.userInfo != null){
+app.get('/studentInfo', function (req, res) {
+    if (req.session.userInfo){
         renderSdudent(res, "学生信息", req.session.userInfo);
         res.end;
     }else {
@@ -204,13 +281,44 @@ app.get('/', function (req, res) {
 
 app.get("/teacherInfo", function (req, res) {
     console.log("查看教师信息");
-    var teacher_id = req.session.teacher_id;
-    if (!teacher_id ){
-        res.end('未登录或登录过期');
+    var teacher_id ;
+    if (!req.session.teacher_id ){
+        // var arg = url.parse(req.url).query;
+        // var code = querystring.parse(arg).code;
+        // get_userId(code);
+        // if (userId != null) {
+        //     get_userInfo(req, userId, userToken, res);
+        //     teacher_id = req.session.teacher_id;
+        //     get_teacherInfo(res, teacher_id, userToken);
+        // }
     }else{
+        teacher_id = req.session.teacher_id;
         get_teacherInfo(res, teacher_id, userToken);
     }
 });
+
+app.get("/getJobInfo",function (req,res) {
+    console.log("查看就业信息");
+    var studentId;
+    if (req.session.userInfo){
+         studentId = req.session.studentid;
+        get_jobInfo(res, studentId, userToken);
+    }else{
+        res.end("未登录");
+    }
+});
+
+app.get("/getPaperProcess",function (req,res) {
+    console.log("查看答辩信息");
+    var studentId;
+    if (req.session.userInfo){
+        studentId = req.session.studentid;
+        get_paperProcess(res, studentId, userToken);
+    }else{
+        res.end("未登录");
+    }
+});
+
 
 app.listen(PORT);
 console.log("Server runing at port:" + PORT + ".");

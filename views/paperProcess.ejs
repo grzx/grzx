@@ -13,7 +13,7 @@
     <meta name="description" content="微信">
     <meta http-equiv="pragma" content="no-cache" />
     <meta http-equiv="Cache-Control" content="no-cache" />
-    <title>实习信息</title>
+    <title>答辩信息</title>
     <link rel="stylesheet" type="text/css" href="css/common.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
@@ -24,16 +24,19 @@
     	
     	<div class="nav-info">
     		<div class="nav-info0" style="padding-left: 2rem;padding-top: 1rem;">
-    		    <p>答辩秘书：心神科技有限公司</p>
-                <p>答辩秘书邮箱：心神科技有限公司</p>
-                <p>导师同意提交初稿：同意</p>
-    			<p>实习完成状态：<label style="color: green">已完成</label></p>
-    			<p>开题报告提交状态：<label style="color: green">已完成</label></p>
-                <p>初稿提交状态：<label style="color: green">已提交</label></p>
-                <p>学分审查状态：<label style="color: green">已通过</label></p>
-                <p>终稿电子版提交状态：<label style="color: red">未提交</label></p>
-                <p>终稿纸质版提交状态：<label style="color: red">未提交</label></p>
-                <p>论文查重状态：<label style="color: red">未通过</label></p>
+    		    <p>学号：<%=paperProcess.studentid %></p>
+                <p>姓名：<%=paperProcess.name %></p>
+                <p>答辩秘书：<%=paperProcess.assistor %></p>
+                <p>答辩秘书邮箱：<%=paperProcess.assistormail %></p>
+                <p>初稿提交状态：<label style="color: green"><%=paperProcess.name %></label></p>
+                <p>导师审核初稿状态：<%=paperProcess.name %></p>
+    			<p>实习完成状态：<label style="color: green"><%=paperProcess.name %></label></p>
+    			<p>开题报告提交状态：<label style="color: green"><%=paperProcess.name %></label></p>
+
+                <p>学分审查状态：<label style="color: green"><%=paperProcess.name %></label></p>
+                <p>终稿电子版提交状态：<label style="color: red"><%=paperProcess.name %></label></p>
+                <p>终稿纸质版提交状态：<label style="color: red"><%=paperProcess.name %></label></p>
+                <p>论文查重状态：<label style="color: red"><%=paperProcess.name %></label></p>
                 <p>是否进入答辩：是</p>
                  <p>是否通过答辩：是</p>
                  <p>答辩后论文提交状态：<label style="color: green">已提交</label></p>
