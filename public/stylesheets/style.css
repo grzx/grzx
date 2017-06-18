@@ -1,0 +1,110 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font: 34px "微软雅黑", Helvetica, Arial, sans-serif;
+  background: #e5e9ef;
+}
+
+a {
+  color: #00B7FF;
+}
+ul li{
+  list-style: none;
+}
+.headContainer{
+  border-radius: 10px;
+  width: 100%;
+  background: #fff;
+  margin: 5% 0 7.5%;
+}
+
+.headContainer::after{
+  content: '';
+  display: block;
+  overflow: hidden;
+  clear: both;
+}
+.headImg{
+  float: left;
+  padding-left: 5%;
+  width: 150px;
+  height: 150px;
+
+}
+.headImg img{
+  width: 100%;
+  height: 100%;
+}
+.userName{
+  float: right;
+  width: 65%;
+  height: 150px;
+  padding-right: 5%;
+}
+.forTea{
+  height: 200px;
+}
+ul.userName li{
+  height: 50%;
+  line-height: 75px;
+  text-align: right;
+}
+ul.userName li.liforTea{
+  line-height: 100px;
+}
+ul.userName li p{
+  display: inline-block;
+  width: 50%;
+}
+
+.detailContainer{
+  border-radius: 10px;
+  width: 100%;
+  background: #fff;
+}
+.detailContainer li{
+  border-bottom: 1px solid #e5e9ef;
+  line-height: 100px;
+}
+.detailContainer li::after{
+  content: '';
+  display: block;
+  overflow: hidden;
+  clear: both;
+}
+.detailContainer li p{
+  width: 35%;
+  float: left;
+  padding-left: 5%;
+}
+.detailContainer li p:last-child{
+  float: right;
+  width: 55%;
+  padding: 0 5% 0 0;
+  text-align: right;
+  color: #999999;
+}
+.detailContainer li p.long{
+  width: 95%;
+  padding: 0 5%;
+}
+.detailContainer li p.short{
+  width: 25%;
+}
+.detailContainer li p.middle{
+  width: 65%
+}
+.detailContainer li p.type{
+  width: 60%;
+}
+.detailContainer li p.confirmed{
+  width: 30%;
+  color: green;
+}
+.detailContainer li p.unconfirmed{
+  width: 30%;
+  color: red;
+}

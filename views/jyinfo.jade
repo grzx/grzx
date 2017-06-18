@@ -1,0 +1,28 @@
+extends layout
+
+block content
+  div.headContainer
+    ul.userName
+      li
+        p #{data.name}
+      li
+        p #{data.studentid}
+  ul.detailContainer
+    li
+      p 就业类型
+      p #{data.type}
+    li
+      p 公司名称
+      p #{data.company}
+    li
+      p 职位
+      p #{data.position}
+    li
+      p 地区
+      p #{data.location}
+    li
+      p 所属行业
+      p #{data.industry}
+    li
+      p 年薪
+      p #{data.salary}

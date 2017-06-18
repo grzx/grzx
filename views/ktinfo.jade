@@ -1,0 +1,30 @@
+extends layout
+
+block content
+  div.headContainer
+    ul.userName
+      li
+        p #{data.name}
+      li
+        p #{data.studentid}
+  ul.detailContainer
+    li
+      p 题目
+      p
+    li
+      p.long #{data.title}
+    li
+      p 提交状态
+      if(data.status)
+        p.confirmed 已提交
+      else
+        p 未提交
+    li
+      p 审核状态
+      if(data.confirm)
+        p.confirmed 已通过
+      else
+        p 未通过
+    li
+      p 审核时间
+      p #{data.confirmtime}

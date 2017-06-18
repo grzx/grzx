@@ -1,0 +1,48 @@
+extends layout
+
+block content
+  div.headContainer
+    div.headImg
+      img(src="#{data.imgurl}")
+    ul.userName
+      li
+        p #{data.name}
+        p #{data.studentid}
+      li
+        p #{data.gender}
+        p #{data.birthday}
+  ul.detailContainer
+    li
+      p 学生类型
+      p #{data.type_name}
+    li
+      p 学位类型
+      p #{data.degree_type_name}
+    li
+      p 领域(系)
+      p #{data.domain}
+    li
+      p 民族
+      p #{data.nation}
+    li
+      p 入学年份
+      p #{data.grade}
+    li
+      p 校区
+      p #{data.location}
+    li
+      p 学苑
+      p #{data.class}
+    li
+      p 专业
+      p #{data.major_name}
+    li
+      p 研究方向
+      p #{data.researcharea}
+
+    li
+      p 手机
+      p #{data.telephone}
+    li
+      p E-mail
+      p #{data.mail}

@@ -1,80 +1,82 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta http-equiv="content-Type" content="text/html;charset=utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
-	<meta content="yes" name="apple-mobile-web-app-capable">
-	<meta content="black" name="apple-mobile-web-app-status-bar-style">
-	<meta content="-1" http-equiv="Expires">
-	<meta content="telephone=no" name="format-detection">
-    <meta http-equiv="Content-Language" contect="zh-CN">
-    <meta name="keywords" content="微信">
-    <meta name="description" content="微信">
-    <meta http-equiv="pragma" content="no-cache" />
-    <meta http-equiv="Cache-Control" content="no-cache" />
-    <title>个人信息</title>
-    <link rel="stylesheet" type="text/css" href="common.css">
-    <link rel="stylesheet" type="text/css" href="style.css">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta charset="utf-8" />
+  <title>个人信息</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="foundation.min.css">
+  <link rel="stylesheet" type="text/css" href="us-app.css">
 </head>
 <body>
-<section>
-	<div class="head-box">
-		<div class="head-img"><img src=<%= imgurl %>></div>
+  <div class="off-canvas-wrap" data-offcanvas="">
+    <div class="inner-wrap">
+      <section class="main-section">
+        <div class="min-height">
+          <div class="row">
+            <div class="small-12 columns">
+              <div class="row minus_marg" style="padding-top:0px !Important;">
+                <div class="medium-12 columns">
 
-		<div class="head-name"><%= name %></div>
-		<div class="head-gender"><%= gender %></div>
-		
-	</div>
-</section>
-<section>
-    <div class="nav-box">
+                  <div style="text-align: center;margin-top:20px;">
+                    <img alt="" style="width:120px;" src=<%= data.imgurl %>>
+                    <p>学生类型：<%= data.type_name %></p>
+                    <p>学位类型：<%= data.degree_type_name %></p>
+                    <p>领域(系)：<%= data.domain %></p>
+                  </div>
 
-    	<div class="nav-info">
-    		<div class="nav-info0">
-				<font siz = 14>
-    		    <p>
-    			  <span>出生日期：<%= birthday %></span>
-    			</p>
-				<p>
-					<span>民族：<%= nation %></span>
-				</p>
-    			<p>
-    			  <span>学号：<%= studentid %></span>
-    			</p>
-				<p>
-					<span>专业：<%= major_name %></span>
-				</p>
-    			<p>
-    			  <span>入学年份：<%= startyearmonth %></span>
-    			</p>
-				<p>
-					<span>研究方向：<%= researcharea %></span>
-				</p>
-    			<p>
-    			  <span>校区：<%= location %></span>
-    			</p>
-				<p>
-					<span>电话：<%= telephone %></span>
-				</p>
-    			<p>
-    			  <span>邮箱：<%= mail %></span>
-    			</p>
-    			<p>
-    			  <span>单双证：<%= type_name %></span>
-    			</p>
-				<p>
-					<span>学苑：<%= birthday %></span>
-				</p>
-				<p>
-					<span>领域：<%= birthday %></span>
-				</p>
-				</font>
-    		</div>
-    	</div>
+                  <div class="row minus_marg" style="padding-top:0px !Important;">
+                    <div class="small-10 columns">
+                      <h1>学生信息</h1>
+                    </div>
+                  </div>
+
+                  <div class="row minus_marg ">
+                    <div class="small-12 columns" style="padding-top:0px !Important;">
+                      <div class="div-a"><p>姓名：<%= data.name %></p></div>
+                      <div class="div-b"><p>性别：<%= data.gender %></p></div>
+
+                      <div class="div-a"><p>出生日期：<%= data.birthday %></p></div>
+                      <div class="div-b"><p>民族：<%= data.nation %></p></div>
+
+                      <div class="div-a"><p>学号：<%= data.studentid %></p></div>
+                      <div class="div-b"><p>入学年月：<%= data.startyearmonth %></p></div>
+
+                      <div class="div-a"><p>校区：<%= data.location %></p></div>
+                      <div class="div-b"><p>学苑：<%= data.class %></p></div>
+
+                      <div class="div-c"><p>专业：<%= data.major_name %></p></div>
+                      <div class="div-c"><p>研究方向：<%= data.researcharea %></p></div>
+                      <div class="div-c"><p>电话：<%= data.telephone %></p></div>
+                      <div class="div-c"><p>邮箱：<%= data.mail %></p></div>
+
+                    </div>
+                  </div>
+
+                  <div class="columns no-pad-med"><hr></div>
+
+                  <div class="row minus_marg" style="padding-top:0px !Important;">
+                    <div class="small-10 columns">
+                      <h1>导师信息</h1>
+                    </div>
+                  </div>
+                  <div class="row minus_marg ">
+                    <div class="small-12 columns" style="padding-top:0px !Important;">
+                      <div class="div-a"><p>导师姓名：张齐勋</p></div>
+                      <div class="div-b"><p>导师id：1</p></div>
+                      <div class="div-a"><p>协助导师姓名：张齐勋</p></div>
+                      <div class="div-b"><p>协助导师id：1</p></div>
+                      <div style="height:90px;"></div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
-</section>
-<script src="jquery.min.js"></script>
-<script src="common.js"></script>
+  </div>
 </body>
 </html>

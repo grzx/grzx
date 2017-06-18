@@ -1,0 +1,45 @@
+extends layout
+
+block content
+  div.headContainer
+    ul.userName
+      li
+        p #{data.name}
+      li
+        p #{data.studentid}
+  ul.detailContainer
+    li
+      p 题目
+      p
+    li
+      p.long #{data.title}
+    li
+      p 答辩秘书
+      p #{data.assistor}
+    li
+      p 秘书邮箱
+      p #{data.assistormail}
+    li
+      p.type 初稿提交状态
+      if(data.isdraftsubmit)
+        p.confirmed 已提交
+      else
+        p 未提交
+    li
+      p.type 导师审核初稿状态
+      if(data.isteacheragree)
+        p.confirmed 已通过
+      else
+        p 未通过
+    li
+      p.type 论文终稿电子版提交状态
+      if(data.eFinalStatus)
+        p.confirmed 已提交
+      else
+        p 未提交
+    li
+      p.type 论文终稿纸质版审核状态
+      if(data.printFinalStatus)
+        p.confirmed 已通过
+      else
+        p 未通过

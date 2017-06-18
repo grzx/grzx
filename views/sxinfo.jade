@@ -1,0 +1,61 @@
+extends layout
+
+block content
+  div.headContainer
+    ul.userName
+      li
+        p #{data.name}
+      li
+        p #{data.studentid}  
+  ul.detailContainer
+    li
+      p 实习单位
+      p #{data.company}
+    li
+      p 导师审核
+      if(data.teacherconfirm)
+        p.confirmed 已通过
+      else
+        p 未通过
+    li
+      p 图书馆审核
+      if(data.libraryconfirm)
+        p.confirmed 已通过
+      else
+        p.unconfirmed 未通过
+    li
+      p 后勤审核
+      if(data.hqconfirm)
+        p.confirmed 已通过
+      else
+        p.unconfirmed 未通过
+    li
+      p 财务审核
+      if(data.cwconfirm)
+        p.confirmed 已通过
+      else
+        p.unconfirmed 未通过
+    li
+      p 学工办审核
+      if(data.xgbconfirm)
+        p.confirmed 已通过
+      else
+        p.unconfirmed 未通过
+    li
+      p 实习办审核
+      if(data.sxbconfirm)
+        p.confirmed 已通过
+      else
+        p.unconfirmed 未通过
+    li
+      p 立项生效时间
+      p #{data.internstarttime}
+    li
+      p 结项审核状态
+      if(data.endconfirm)
+        p.confirmed 已通过
+      else
+        p.unconfirmed 未通过
+    li
+      p 结项生效时间
+      p #{data.internendtime}
