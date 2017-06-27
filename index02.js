@@ -408,7 +408,7 @@ app.get("/getJobInfo",function (req,res) {
     }else{
         req2userId(req);
         studentId = userId;
-    }
+    } 
     get_jobInfo(res, studentId, userToken);
 });
 
