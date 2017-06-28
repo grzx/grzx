@@ -61,6 +61,9 @@ function get_userId(code) {
         var size = 0;
         response.setEncoding('utf8');
         response.on('data', function (data) {
+            if(data == null){
+                data = ''
+            }
             //	console.log(data);
             var j = JSON.parse(data);
             responseText.push(data);
@@ -102,6 +105,9 @@ function get_userInfo(req,userId, userInfoToken,res) {
         var size = 0;
         response.setEncoding('utf8');
         response.on('data', function (data) {
+            if(data == null){
+                data = ''
+            }
             console.log(data);
             responseText.push(data);
             var j = JSON.parse(data);
@@ -139,6 +145,9 @@ function get_teacherId(req,userId, userInfoToken) {
         var size = 0;
         response.setEncoding('utf8');
         response.on('data', function (data) {
+            if(data == null){
+               data = ''
+            }
             console.log(data);
             responseText.push(data);
             var j = JSON.parse(data);
@@ -175,6 +184,9 @@ function get_teacherInfo(res, teacherId, userInfoToken) {
         var size = 0;
         response.setEncoding('utf8');
         response.on('data', function (data) {
+            if(data == null){
+                data = ''
+            }
             console.log(data);
             responseText.push(data);
             var j = JSON.parse(data);
@@ -207,6 +219,9 @@ function get_internInfo(res,studentid,userInfoToken) {
         var internInfo;
         response.setEncoding('utf8');
         response.on('data', function (data) {
+            if(data == null){
+                data = ''
+            }
             console.log(data);
             responseText.push(data);
             var j = JSON.parse(data);
@@ -240,6 +255,9 @@ function get_jobInfo(res,studentid,userInfoToken) {
         var jobInfo;
         response.setEncoding('utf8');
         response.on('data', function (data) {
+            if(data == null){
+                data = ''
+            }
             console.log(data);
             responseText.push(data);
             var j = JSON.parse(data);
@@ -274,6 +292,9 @@ function get_paperProposal(res,studentid,userInfoToken) {
         var paperProposal;
         response.setEncoding('utf8');
         response.on('data', function (data) {
+            if(data == null){
+                data = ''
+            }
             console.log(data);
             responseText.push(data);
             var j = JSON.parse(data);
@@ -307,6 +328,9 @@ function get_paperProcess(res,studentid,userInfoToken) {
         var paperProcess;
         response.setEncoding('utf8');
         response.on('data', function (data) {
+            if(data == null){
+                data = ''
+            }
             console.log(data);
             responseText.push(data);
             var j = JSON.parse(data);
