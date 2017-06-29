@@ -63,13 +63,15 @@ function get_userId(code) {
         response.on('data', function (data) {
             if(data == null){
                 data = ''
+            }else{
+                //	console.log(data);
+                var j = JSON.parse(data);
+                responseText.push(data);
+                if (j.UserId != null)
+                    userId = j.UserId;
+                console.log(userId);
             }
-            //	console.log(data);
-            var j = JSON.parse(data);
-            responseText.push(data);
-            if (j.UserId != null)
-                userId = j.UserId;
-            console.log(userId);
+
         });
         response.on('end', function () {
             //console.log(responseText);
@@ -147,15 +149,17 @@ function get_teacherId(req,userId, userInfoToken) {
         response.on('data', function (data) {
             if(data == null){
                data = ''
+            }else{
+                console.log(data);
+                responseText.push(data);
+                var j = JSON.parse(data);
+                console.log(j);
+                if(j.errcode==0){
+                    userInfo=j.data;
+                }
+                teacherId = userInfo.teacher_id;
             }
-            console.log(data);
-            responseText.push(data);
-            var j = JSON.parse(data);
-            console.log(j);
-            if(j.errcode==0){
-                userInfo=j.data;
-            }
-            teacherId = userInfo.teacher_id;
+
 
         });
         response.on('end', function () {
@@ -186,13 +190,15 @@ function get_teacherInfo(res, teacherId, userInfoToken) {
         response.on('data', function (data) {
             if(data == null){
                 data = ''
+            }else{
+                console.log(data);
+                responseText.push(data);
+                var j = JSON.parse(data);
+                if (j.errcode == 0) {
+                    teacherInfo = j.data;
+                }
             }
-            console.log(data);
-            responseText.push(data);
-            var j = JSON.parse(data);
-            if (j.errcode == 0) {
-                teacherInfo = j.data;
-            }
+
         });
         response.on('end', function () {
             renderTeacher(res, "导师信息", teacherInfo);
@@ -221,13 +227,15 @@ function get_internInfo(res,studentid,userInfoToken) {
         response.on('data', function (data) {
             if(data == null){
                 data = ''
+            }else{
+                console.log(data);
+                responseText.push(data);
+                var j = JSON.parse(data);
+                if (j.errcode == 0) {
+                    internInfo = j.data;
+                }
             }
-            console.log(data);
-            responseText.push(data);
-            var j = JSON.parse(data);
-            if (j.errcode == 0) {
-                internInfo = j.data;
-            }
+
         });
         response.on('end', function () {
             renderIntern(res, "实习信息", internInfo);
@@ -257,13 +265,15 @@ function get_jobInfo(res,studentid,userInfoToken) {
         response.on('data', function (data) {
             if(data == null){
                 data = ''
+            }else{
+                console.log(data);
+                responseText.push(data);
+                var j = JSON.parse(data);
+                if (j.errcode == 0) {
+                    jobInfo = j.data;
+                }
             }
-            console.log(data);
-            responseText.push(data);
-            var j = JSON.parse(data);
-            if (j.errcode == 0) {
-                jobInfo = j.data;
-            }
+
         });
         response.on('end', function () {
             renderJob(res, "就业信息", jobInfo);
@@ -294,13 +304,15 @@ function get_paperProposal(res,studentid,userInfoToken) {
         response.on('data', function (data) {
             if(data == null){
                 data = ''
+            }else{
+                console.log(data);
+                responseText.push(data);
+                var j = JSON.parse(data);
+                if (j.errcode == 0) {
+                    paperProposal = j.data;
+                }
             }
-            console.log(data);
-            responseText.push(data);
-            var j = JSON.parse(data);
-            if (j.errcode == 0) {
-                paperProposal = j.data;
-            }
+
         });
         response.on('end', function () {
             renderPaperProposal(res, "开题信息", paperProposal);
@@ -330,12 +342,14 @@ function get_paperProcess(res,studentid,userInfoToken) {
         response.on('data', function (data) {
             if(data == null){
                 data = ''
-            }
-            console.log(data);
-            responseText.push(data);
-            var j = JSON.parse(data);
-            if (j.errcode == 0) {
-                paperProcess = j.data;
+            }else{
+                console.log(data);
+                responseText.push(data);
+                var j = JSON.parse(data);
+                if (j.errcode == 0) {
+                    paperProcess = j.data;
+
+                }
             }
         });
         response.on('end', function () {
