@@ -36,8 +36,8 @@ app.use(session({
     saveUninitialized: true
 }));
 
-var reJSON;
 var access_token = readAccessToken();
+
 //自己的服务器核实是否通过微信公众号的验证
 function checkSignature(params, token) {
     var key = [token, params.timestamp, params.nonce].sort().join('');
@@ -49,35 +49,31 @@ function checkSignature(params, token) {
 
 function readAccessToken() {
     var data = fs.readFileSync('access_token.txt', 'utf8');
-    console.log("qiguai");
     console.log(data);
     return data;
 }
 
 function get_userId(code) {
-    //var post_str = new Buffer(JSON.stringify(reJSON));
-    var get_req = https.request('https://qyapi.weixin.qq.com/cgi-bin/user/getuserinfo?access_token=' + access_token + '&code=' + code, function (response) {
-        var responseText = [];
-        var size = 0;
-        response.setEncoding('utf8');
-        response.on('data', function (data) {
-            if (data === null) {
-                data = ''
-            } else {
-                //	console.log(data);
-                var j = JSON.parse(data);
-                responseText.push(data);
-                if (j.UserId !== null)
-                    userId = j.UserId;
-                console.log(userId);
-            }
+    var get_req = https.request(
+        'https://qyapi.weixin.qq.com/cgi-bin/user/getuserinfo?access_token=' + access_token + '&code=' + code,
+        function (response) {
+            var responseText = [];
+            response.setEncoding('utf8');
+            response.on('data', function (data) {
+                if (data === null) {
+                    data = ''
+                } else {
+                    //	console.log(data);
+                    var j = JSON.parse(data);
+                    responseText.push(data);
+                    if (j.UserId !== null) {
+                        userId = j.UserId;
+                    }
+                    console.log(userId);
+                }
 
+            });
         });
-        response.on('end', function () {
-            //console.log(responseText);
-            //responseText.UserId
-        });
-    });
 
     //对于前面设置请求和json数据进行发送
     //get_req.write(post_str);
@@ -104,14 +100,20 @@ function get_userInfo(req, userId, userInfoToken, res) {
     //	console.log("https://api.mysspku.com/index.php/V2/StudentInfo/getDetail?stuid="+userId+"&token="+userInfoToken);
     var get_req = https.request(get_options, function (response) {
         var responseText = [];
-        var size = 0;
         response.setEncoding('utf8');
         response.on('data', function (data) {
             console.log(data);
             responseText.push(data);
-            var j = JSON.parse(data);
+
+            try {
+                var j = JSON.parse(data);
+            } catch (e) {
+                console.error(e);
+                return;
+            }
+
             console.log(j);
-            if (j.errcode === 0) {
+            if (j && j.errcode === 0) {
                 userInfo = j.data;
             }
 
@@ -138,21 +140,29 @@ function get_teacherId(req, userId, userInfoToken) {
         method: 'GET',
         rejectUnauthorized: false
     };
+
     //	console.log("https://api.mysspku.com/index.php/V2/StudentInfo/getDetail?stuid="+userId+"&token="+userInfoToken);
     var get_req = https.request(get_options, function (response) {
         var responseText = [];
-        var size = 0;
         response.setEncoding('utf8');
         response.on('data', function (data) {
             console.log(data);
             responseText.push(data);
-            var j = JSON.parse(data);
+
+            try {
+                var j = JSON.parse(data);
+            } catch (e) {
+                console.error(e);
+                return;
+            }
+
             console.log(j);
-            if (j.errcode === 0) {
+            if (j && j.errcode === 0) {
                 userInfo = j.data;
             }
             teacherId = userInfo.teacher_id;
         });
+
         response.on('end', function () {
             //console.log(responseText);
             req.session.userInfo = userInfo;
@@ -164,6 +174,7 @@ function get_teacherId(req, userId, userInfoToken) {
     //get_req.write(post_str);
     get_req.end();
 }
+
 //获取导师信息接口数据
 function get_teacherInfo(res, teacherId, userInfoToken) {
     //设置get请求参数
@@ -176,19 +187,25 @@ function get_teacherInfo(res, teacherId, userInfoToken) {
     //	console.log("https://api.mysspku.com/index.php/V2/StudentInfo/getDetail?stuid="+userId+"&token="+userInfoToken);
     var get_req = https.request(get_options, function (response) {
         var responseText = [];
-        var size = 0;
         response.setEncoding('utf8');
         response.on('data', function (data) {
             console.log(data);
             responseText.push(data);
-            var j = JSON.parse(data);
-            if (j.errcode === 0) {
+
+            try {
+                var j = JSON.parse(data);
+            } catch (e) {
+                console.error(e);
+                return;
+            }
+
+            if (j && j.errcode === 0) {
                 teacherInfo = j.data;
             }
         });
+
         response.on('end', function () {
             renderTeacher(res, "导师信息", teacherInfo);
-            //console.log(responseText);
         });
     });
     //对于前面设置请求和json数据进行发送
@@ -207,17 +224,24 @@ function get_internInfo(res, studentid, userInfoToken) {
     };
     var get_req = https.request(get_options, function (response) {
         var responseText = [];
-        var size = 0;
         var internInfo;
         response.setEncoding('utf8');
         response.on('data', function (data) {
             console.log(data);
             responseText.push(data);
-            var j = JSON.parse(data);
-            if (j.errcode === 0) {
+
+            try {
+                var j = JSON.parse(data);
+            } catch (e) {
+                console.error(e);
+                return;
+            }
+
+            if (j && j.errcode === 0) {
                 internInfo = j.data;
             }
         });
+
         response.on('end', function () {
             renderIntern(res, "实习信息", internInfo);
         });
@@ -240,17 +264,24 @@ function get_jobInfo(res, studentid, userInfoToken) {
     //	console.log("https://api.mysspku.com/index.php/V2/StudentInfo/getDetail?stuid="+userId+"&token="+userInfoToken);
     var get_req = https.request(get_options, function (response) {
         var responseText = [];
-        var size = 0;
         var jobInfo;
         response.setEncoding('utf8');
         response.on('data', function (data) {
             console.log(data);
             responseText.push(data);
-            var j = JSON.parse(data);
-            if (j.errcode === 0) {
+
+            try {
+                var j = JSON.parse(data);
+            } catch (e) {
+                console.error(e);
+                return;
+            }
+
+            if (j && j.errcode === 0) {
                 jobInfo = j.data;
             }
         });
+
         response.on('end', function () {
             renderJob(res, "就业信息", jobInfo);
             //console.log(responseText);
@@ -274,17 +305,24 @@ function get_paperProposal(res, studentid, userInfoToken) {
     };
     var get_req = https.request(get_options, function (response) {
         var responseText = [];
-        var size = 0;
         var paperProposal;
         response.setEncoding('utf8');
         response.on('data', function (data) {
             console.log(data);
             responseText.push(data);
-            var j = JSON.parse(data);
-            if (j.errcode === 0) {
+
+            try {
+                var j = JSON.parse(data);
+            } catch (e) {
+                console.error(e);
+                return;
+            }
+
+            if (j && j.errcode === 0) {
                 paperProposal = j.data;
             }
         });
+
         response.on('end', function () {
             renderPaperProposal(res, "开题信息", paperProposal);
         });
@@ -307,18 +345,24 @@ function get_paperProcess(res, studentid, userInfoToken) {
     //	console.log("https://api.mysspku.com/index.php/V2/StudentInfo/getDetail?stuid="+userId+"&token="+userInfoToken);
     var get_req = https.request(get_options, function (response) {
         var responseText = [];
-        var size = 0;
         var paperProcess;
         response.setEncoding('utf8');
         response.on('data', function (data) {
             console.log(data);
             responseText.push(data);
-            var j = JSON.parse(data);
-            if (j.errcode === 0) {
-                paperProcess = j.data;
 
+            try {
+                var j = JSON.parse(data);
+            } catch (e) {
+                console.error(e);
+                return;
+            }
+
+            if (j && j.errcode === 0) {
+                paperProcess = j.data;
             }
         });
+
         response.on('end', function () {
             renderPaper(res, "就业信息", paperProcess);
             //console.log(responseText);
@@ -371,14 +415,6 @@ app.get("/teacherInfo", function (req, res) {
     console.log("查看教师信息");
     var teacher_id;
     if (!req.session.teacher_id) {
-        // var arg = url.parse(req.url).query;
-        // var code = querystring.parse(arg).code;
-        // get_userId(code);
-        // if (userId != null) {
-        //     get_userInfo(req, userId, userToken, res);
-        //     teacher_id = req.session.teacher_id;
-        //     get_teacherInfo(res, teacher_id, userToken);
-        // }
         var arg = url.parse(req.url).query;
         var code = querystring.parse(arg).code;
         get_userId(code);
