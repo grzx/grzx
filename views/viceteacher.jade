@@ -1,0 +1,24 @@
+extends layout
+
+block content
+  div.headContainer
+    div.headImg.forTea
+      img(src="#{data.imgurl}")
+    ul.userName.forTea
+      li.liforTea
+        p #{data.name}
+      li.liforTea
+        p #{data.gender}
+  ul.detailContainer
+    li
+      p 教师职工号
+      p #{data.viceteacherid}
+    li
+      p 职称
+      p #{data.title}
+    li
+      p 手机
+      p #{data.telephone}
+    li
+      p.short E-mail
+      p.middle #{data.mail}

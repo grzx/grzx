@@ -107,9 +107,6 @@ function get_userInfo(req,userId, userInfoToken,res) {
         var size = 0;
         response.setEncoding('utf8');
         response.on('data', function (data) {
-            if(data == null){
-                data = ''
-            }
             console.log(data);
             responseText.push(data);
             var j = JSON.parse(data);
@@ -147,9 +144,6 @@ function get_teacherId(req,userId, userInfoToken) {
         var size = 0;
         response.setEncoding('utf8');
         response.on('data', function (data) {
-            if(data == null){
-               data = ''
-            }else{
                 console.log(data);
                 responseText.push(data);
                 var j = JSON.parse(data);
@@ -158,9 +152,6 @@ function get_teacherId(req,userId, userInfoToken) {
                     userInfo=j.data;
                 }
                 teacherId = userInfo.teacher_id;
-            }
-
-
         });
         response.on('end', function () {
             //console.log(responseText);
@@ -188,17 +179,12 @@ function get_teacherInfo(res, teacherId, userInfoToken) {
         var size = 0;
         response.setEncoding('utf8');
         response.on('data', function (data) {
-            if(data == null){
-                data = ''
-            }else{
                 console.log(data);
                 responseText.push(data);
                 var j = JSON.parse(data);
                 if (j.errcode == 0) {
                     teacherInfo = j.data;
                 }
-            }
-
         });
         response.on('end', function () {
             renderTeacher(res, "导师信息", teacherInfo);
@@ -225,17 +211,12 @@ function get_internInfo(res,studentid,userInfoToken) {
         var internInfo;
         response.setEncoding('utf8');
         response.on('data', function (data) {
-            if(data == null){
-                data = ''
-            }else{
                 console.log(data);
                 responseText.push(data);
                 var j = JSON.parse(data);
                 if (j.errcode == 0) {
                     internInfo = j.data;
                 }
-            }
-
         });
         response.on('end', function () {
             renderIntern(res, "实习信息", internInfo);
@@ -263,17 +244,12 @@ function get_jobInfo(res,studentid,userInfoToken) {
         var jobInfo;
         response.setEncoding('utf8');
         response.on('data', function (data) {
-            if(data == null){
-                data = ''
-            }else{
                 console.log(data);
                 responseText.push(data);
                 var j = JSON.parse(data);
                 if (j.errcode == 0) {
                     jobInfo = j.data;
                 }
-            }
-
         });
         response.on('end', function () {
             renderJob(res, "就业信息", jobInfo);
@@ -302,17 +278,12 @@ function get_paperProposal(res,studentid,userInfoToken) {
         var paperProposal;
         response.setEncoding('utf8');
         response.on('data', function (data) {
-            if(data == null){
-                data = ''
-            }else{
                 console.log(data);
                 responseText.push(data);
                 var j = JSON.parse(data);
                 if (j.errcode == 0) {
                     paperProposal = j.data;
                 }
-            }
-
         });
         response.on('end', function () {
             renderPaperProposal(res, "开题信息", paperProposal);
@@ -340,9 +311,6 @@ function get_paperProcess(res,studentid,userInfoToken) {
         var paperProcess;
         response.setEncoding('utf8');
         response.on('data', function (data) {
-            if(data == null){
-                data = ''
-            }else{
                 console.log(data);
                 responseText.push(data);
                 var j = JSON.parse(data);
@@ -350,7 +318,6 @@ function get_paperProcess(res,studentid,userInfoToken) {
                     paperProcess = j.data;
 
                 }
-            }
         });
         response.on('end', function () {
             renderPaper(res, "就业信息", paperProcess);
@@ -378,7 +345,7 @@ function renderIntern(res, titlep, internInfo) {
 function renderJob(res, titlep, jobInfo) {
     console.log(jobInfo);
     res.render('jyinfo', {data: jobInfo});
-}
+} 
 function renderPaperProposal(res, titlep, paperProposal) {
     res.render('ktinfo', {data: paperProposal});
 }
