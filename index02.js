@@ -16,6 +16,7 @@ var app = express();
 var userId;
 var userInfo;
 var teacherId;
+var viceTeacherId;
 var teacherInfo;
 var userToken = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
 //定义EJS模板引擎和模板文件位置
@@ -62,11 +63,16 @@ function get_userId(code) {
         response.setEncoding('utf8');
         response.on('data', function (data) {
             //	console.log(data);
-            var j = JSON.parse(data);
-            responseText.push(data);
-            if (j.UserId != null)
-                userId = j.UserId;
-            console.log(userId);
+            if (data != null){
+                var j = JSON.parse(data);
+                if (j!= null){
+                    responseText.push(data);
+                    if (j.UserId != null)
+                        userId = j.UserId;
+                    console.log(userId);
+                }
+
+            }
         });
         response.on('end', function () {
             //console.log(responseText);
@@ -147,6 +153,7 @@ function get_teacherId(req,userId, userInfoToken) {
                 userInfo=j.data;
             }
             teacherId = userInfo.teacher_id;
+            viceTeacherId = userInfo.vice_teacher_id;
 
         });
         response.on('end', function () {
@@ -154,6 +161,8 @@ function get_teacherId(req,userId, userInfoToken) {
             req.session.userInfo = userInfo;
             req.session.teacher_id = userInfo.teacher_id;
             req.session.studentid = userInfo.studentid;
+            req.session.vice_teacher_id = userInfo.vice_teacher_id;
+
         });
     });
     //对于前面设置请求和json数据进行发送
@@ -356,6 +365,7 @@ app.get('/studentInfo', function (req, res) {
     }else {
         var arg = url.parse(req.url).query;
         var code = querystring.parse(arg).code;
+        // if(code == null )
         get_userId(code);
         if (userId != null) {
             get_userInfo(req, userId, userToken, res);
@@ -388,6 +398,28 @@ app.get("/teacherInfo", function (req, res) {
     }
 });
 
+app.get("/viceTeacherInfo", function(req,res){
+    console.log("查看协助教师信息");
+    var vice_teacher_id;
+    if (!req.session.vice_teacher_id ){
+        var arg = url.parse(req.url).query;
+        var code = querystring.parse(arg).code;
+        get_userId(code);
+        if (userId != null) {
+            get_teacherId(req,userId,userToken);
+            if (viceTeacherId != null){
+                get_teacherInfo(res, viceTeacherId, userToken);
+            }else{
+             //todo 转到没有辅助导师页面
+
+            }
+        }
+    }else{
+        vice_teacher_id = req.session.vice_teacher_id;
+        get_teacherInfo(res, vice_teacher_id, userToken);
+    }
+});
+
 app.get("/getInternInfo",function (req,res) {
     console.log("查看实习信息");
     var studentId;
@@ -408,9 +440,10 @@ app.get("/getJobInfo",function (req,res) {
     }else{
         req2userId(req);
         studentId = userId;
-    } 
+    }
     get_jobInfo(res, studentId, userToken);
 });
+
 
 app.get("/getPaperProposal",function (req,res) {
     console.log("查看开题信息");
