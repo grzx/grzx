@@ -445,8 +445,9 @@ app.get("/viceTeacherInfo", function(req,res){
             if (viceTeacherId != null){
                 get_teacherInfo(res, viceTeacherId, userToken);
             }else{
-             //todo 转到没有辅助导师页面
-
+                var error;
+                error.message = "该用户没有辅助导师";
+                res.render('error', {data: error});
             }
         }
     }else{
@@ -455,7 +456,6 @@ app.get("/viceTeacherInfo", function(req,res){
     }
 });
 
-app.get("/getInternInfo",function (req,res) {
 app.get("/getInternInfo", function (req, res) {
     console.log("查看实习信息");
     var studentId;

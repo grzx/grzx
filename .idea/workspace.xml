@@ -2,13 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1c3c0fd1-2c5c-4181-bd9e-7d1910fa8fb6" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/views/viceteacher.jade" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/views/viceteacherInfo.ejs" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/access_token.txt" afterPath="$PROJECT_DIR$/access_token.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index02.js" afterPath="$PROJECT_DIR$/index02.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/teacher.jade" afterPath="$PROJECT_DIR$/views/teacher.jade" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wx_token/index.js" afterPath="$PROJECT_DIR$/wx_token/index.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/viceteacher.jade" afterPath="$PROJECT_DIR$/views/viceteacher.jade" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -293,7 +290,7 @@
       <workItem from="1499061669602" duration="23000" />
       <workItem from="1499062233093" duration="364000" />
       <workItem from="1499062753909" duration="1085000" />
-      <workItem from="1499065454698" duration="170000" />
+      <workItem from="1499065454698" duration="265000" />
     </task>
     <task id="LOCAL-00001" summary="Merge branch 'master' of github.com:grzx/grzx&#10;&#10;# Conflicts:&#10;#&#9;views/kaiti.ejs&#10;">
       <created>1497793638833</created>
@@ -309,11 +306,18 @@
       <option name="project" value="LOCAL" />
       <updated>1498525746020</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="新增辅助导师页面">
+      <created>1499065701209</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1499065701209</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="12979000" />
+    <option name="totallyTimeSpent" value="13074000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-11" y="-11" width="1942" height="1042" extended-state="6" />
@@ -365,7 +369,9 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Merge branch 'master' of github.com:grzx/grzx&#10;&#10;# Conflicts:&#10;#&#9;views/kaiti.ejs&#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="Merge branch 'master' of github.com:grzx/grzx&#10;&#10;# Conflicts:&#10;#&#9;views/kaiti.ejs&#10;" />
+    <MESSAGE value="Merge branch 'master' of github.com:grzx/grzx&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;index02.js&#10;" />
+    <MESSAGE value="新增辅助导师页面" />
+    <option name="LAST_COMMIT_MESSAGE" value="新增辅助导师页面" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
