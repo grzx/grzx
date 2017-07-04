@@ -463,7 +463,7 @@ app.get("/viceTeacherInfo", function(req,res){
         get_teacherInfo(res, vice_teacher_id, userToken);
     }
 });
-
+//实习，就业，开题，答辩信息都已经和userId即学生的id绑定，其中为空的情况在获取userId时已经考虑
 app.get("/getInternInfo", function (req, res) {
     console.log("查看实习信息");
     var studentId;
