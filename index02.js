@@ -412,6 +412,10 @@ app.get('/studentInfo', function (req, res) {
         get_userId(code);
         if (userId !== null) {
             get_userInfo(req, userId, userToken, res);
+        }else{
+                var error;
+                error.message = "没有该学生";
+                res.render('error', {data: error});
         }
     }
 });
@@ -426,6 +430,10 @@ app.get("/teacherInfo", function (req, res) {
         if (userId !== null) {
             get_teacherId(req, userId, userToken);
             get_teacherInfo(res, teacherId, userToken);
+        }else{
+                var error;
+                error.message = "该学生没有导师";
+                res.render('error', {data: error});
         }
     } else {
         teacher_id = req.session.teacher_id;
@@ -446,7 +454,7 @@ app.get("/viceTeacherInfo", function(req,res){
                 get_teacherInfo(res, viceTeacherId, userToken);
             }else{
                 var error;
-                error.message = "该用户没有辅助导师";
+                error.message = "该学生没有辅助导师";
                 res.render('error', {data: error});
             }
         }
